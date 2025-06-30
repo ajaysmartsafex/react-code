@@ -3,7 +3,7 @@ import React from 'react'
 const Heders = () => {
   return (
     <div>
-      <h1>Nav Bar</h1>
+      <h2>Nav Bar</h2>
     </div>
   )
 }
