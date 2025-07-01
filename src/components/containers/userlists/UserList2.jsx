@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from "react";
+import useApiHooks from "../../../customhooks/useApiHooks";
 
-const UserList = () => {
-  const [users, setUsers] = useState([]);
+const UserList2 = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
+  const { data, error, loading, fetchData } = useApiHooks();
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://jsonplaceholder.typicode.com/users"
-        );
-        const data = await response.json();
-        setUsers(data);
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    };
-    fetchData();
+    // Example usage of fetchData
+    fetchData("https://jsonplaceholder.typicode.com/users")
+      .then((data) => console.log("Data fetched:", data))
+      .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
   // Filter users by search term (case-insensitive)
-  const filteredUsers = users.filter((user) =>
+  const filteredUsers = data.filter((user) =>
     user.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -57,4 +54,4 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default UserList2;

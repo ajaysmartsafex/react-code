@@ -1,5 +1,7 @@
-.App {
+body{
+  font-family: "Open Sans", sans-serif;
   text-align: center;
+  font-optical-sizing: auto;
 }
 
 .App-logo {
